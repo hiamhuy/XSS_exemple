@@ -46,10 +46,6 @@ export default function XssMarkdownGithubPage() {
       "Bạn có thể gõ **Markdown** giống như GitHub ở khung bên trái.",
       "Preview bên phải sẽ render HTML *không an toàn* từ nội dung bạn nhập.",
       "",
-      "Ví dụ payload XSS:",
-      '- `<img src=x onerror="alert(\'XSS trong Markdown\')" />`',
-      "- `<a href=\"javascript:alert('XSS link trong Markdown')\">Bấm vào đây</a>`",
-      "",
       "Trong editor thực tế (như GitHub), nội dung sẽ được sanitize/escape trước khi render.",
     ].join("\n")
   );
@@ -80,6 +76,13 @@ export default function XssMarkdownGithubPage() {
           (ví dụ DOMPurify) để loại bỏ tag/script nguy hiểm. Ở đây mình cố tình
           KHÔNG sanitize để bạn thấy rủi ro.
         </p>
+
+        <p>Ví dụ payload XSS:</p>
+        <ul>
+          <li><code>&lt;img src=x onerror="alert('XSS trong Markdown')" /&gt;</code></li>
+          <li><code>&lt;a href="javascript:alert('XSS link trong Markdown')"&gt;Bấm vào đây&lt;/a&gt;</code></li>
+          <li><code>&lt;img src="/api/steal-cookie?name=fake-hacker" /&gt;</code></li>
+        </ul>
 
         {/* Chỉ dùng một khối preview; khi bấm Edit thì preview biến thành ô nhập text */}
         <div className="stack" suppressHydrationWarning>

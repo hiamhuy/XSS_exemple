@@ -1,9 +1,11 @@
 import fs from "fs";
 import path from "path";
 
+type Entry = { time: string; name: string; cookie: unknown };
+
 export default function XssStolenCookiePage() {
-  // Đọc toàn bộ log từ API /stolen-cookies.txt (ghi bởi /api/steal-cookie)
-  let entries: { time: string; name: string; cookie: string }[] = [];
+  // Đọc toàn bộ log từ file stolen-cookies.txt (ghi bởi /api/steal-cookie)
+  let entries: Entry[] = [];
   try {
     const logPath = path.join(process.cwd(), "public/stolen-cookies.txt");
     if (fs.existsSync(logPath)) {
@@ -18,7 +20,7 @@ export default function XssStolenCookiePage() {
             return null;
           }
         })
-        .filter((x): x is { time: string; name: string; cookie: string } => !!x);
+        .filter((x): x is Entry => !!x);
     }
   } catch {
     // bỏ qua lỗi đọc file trong demo
@@ -39,7 +41,7 @@ export default function XssStolenCookiePage() {
                 <tr>
                   <th>Thời gian</th>
                   <th>Tên</th>
-                  <th>Cookie</th>
+                  <th>Cookie (JSON)</th>
                 </tr>
               </thead>
               <tbody>
@@ -52,7 +54,7 @@ export default function XssStolenCookiePage() {
                       <code>{e.name}</code>
                     </td>
                     <td>
-                      <code>{e.cookie}</code>
+                      <code>{JSON.stringify(e.cookie)}</code>
                     </td>
                   </tr>
                 ))}
