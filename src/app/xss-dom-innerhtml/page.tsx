@@ -11,11 +11,11 @@ export default function XssDomInnerHtmlPage() {
   const outputRef = useRef<HTMLDivElement | null>(null);
 
   const handleSetInnerHtml = () => {
-    if (outputRef.current) {
+    const el = outputRef.current;
+    if (el) {
       // CỐ TÌNH LỖ HỔNG: gán thẳng innerHTML từ input người dùng
       // eslint-disable-next-line react/no-danger-with-children
-      // @ts-expect-error: innerHTML tồn tại trên HTMLElement
-      outputRef.current.innerHTML = dangerousHtml;
+      el.innerHTML = dangerousHtml;
     }
   };
 

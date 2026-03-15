@@ -21,7 +21,6 @@ export default function XssPostMessagePage() {
       // - Không kiểm tra cấu trúc event.data
       // - Render thẳng vào dangerouslySetInnerHTML
       setLastOrigin(event.origin);
-      // @ts-expect-error: cố tình coi data là string/html
       setReceivedHtml(event.data);
     }
 
