@@ -8,8 +8,7 @@ export async function GET() {
 
     const data = await db
       .collection("cookies")
-      .find({})
-      .sort({ time: -1 }) // mới nhất trước
+      .find()
       .limit(100)
       .toArray();
 
