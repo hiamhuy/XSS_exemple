@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { CookieInit } from "./CookieInit";
 
 export const metadata: Metadata = {
   title: "Demo App",
@@ -12,12 +13,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body>
+    <html lang="en" suppressHydrationWarning>
+      <body suppressHydrationWarning>
+        <CookieInit />
         <header className="site-header">
           <h1>XSS Demo App</h1>
           <nav>
-            {/* <a href="/">Trang chu</a> */}
+            <a href="/">Trang chu</a>
             {/* <a href="/xss-vulnerable">Demo XSS (co lo hong)</a> */}
             {/* <a href="/xss-dom-innerhtml">DOM XSS: innerHTML</a> */}
             <a href="/xss-markdown-github">XSS Markdown</a>
