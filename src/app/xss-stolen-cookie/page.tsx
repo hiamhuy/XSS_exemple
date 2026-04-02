@@ -8,7 +8,11 @@ export default function XssStolenCookiePage() {
   const [entries, setEntries] = useState<Entry[]>([]);
 
   const fetchData = async () => {
-    const res = await fetch("/api/get-list-cookie");
+    const res = await fetch("/api/get-list-cookie",{
+      method: 'GET',
+      cache: "no-store"
+    });
+
     const data = await res.json();
     setEntries(data.data || []);
   };
