@@ -6,10 +6,8 @@ export async function GET() {
     const client = await clientPromise;
     const db = client.db("xss-demo");
 
-    const data = await db
-      .collection("cookies")
-      .find()
-
+    const data = await db.collection("cookies").find({}).toArray();
+    
     return NextResponse.json({ data: data });
   } catch {
     return NextResponse.json(

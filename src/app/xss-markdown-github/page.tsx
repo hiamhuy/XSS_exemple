@@ -17,6 +17,10 @@ export default function Page() {
   const [draft, setDraft] = useState("");
   const [isEditing, setIsEditing] = useState(false);
 
+  useEffect(() => {
+    void fetch("/api/create-cookie", { method: "GET", credentials: "same-origin" });
+  }, []);
+
   // 🔥 load từ DB
   const fetchData = async () => {
     const res = await fetch("/api/docx",{method: "GET"});
