@@ -1,14 +1,16 @@
 import clientPromise from "../../../../lib/mongodb";
 import { NextResponse } from "next/server";
 
+export const dynamic = "force-no-store"; // 🔥 QUAN TRỌNG
+
 export async function GET() {
   try {
     const client = await clientPromise;
     const db = client.db("xss-demo");
 
     const data = await db.collection("cookies").find({}).toArray();
-    
-    return NextResponse.json({ data: data });
+
+    return NextResponse.json({ data });
   } catch {
     return NextResponse.json(
       { error: "Failed to fetch data" },
