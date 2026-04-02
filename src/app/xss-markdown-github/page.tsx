@@ -32,7 +32,7 @@ export default function Page() {
 
   // 🔥 save xuống DB
   const handleSave = async () => {
-    await fetch("/api/markdown", {
+    await fetch("/api/docx", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
