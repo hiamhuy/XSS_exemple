@@ -19,7 +19,7 @@ export default function Page() {
 
   // 🔥 load từ DB
   const fetchData = async () => {
-    const res = await fetch("/api/markdown");
+    const res = await fetch("/api/docx",{method: "GET"});
     const data = await res.json();
 
     setMarkdown(data.content || "");
