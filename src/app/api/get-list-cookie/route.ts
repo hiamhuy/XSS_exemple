@@ -9,15 +9,8 @@ export async function GET() {
     const data = await db
       .collection("cookies")
       .find()
-      .limit(100)
-      .toArray();
 
-    const safeData = data.map((item) => ({
-      ...item,
-      _id: item._id.toString(),
-    }));
-
-    return NextResponse.json({ data: safeData });
+    return NextResponse.json({ data: data });
   } catch {
     return NextResponse.json(
       { error: "Failed to fetch data" },
