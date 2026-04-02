@@ -47,7 +47,6 @@ export default function XssStolenCookiePage() {
               <thead>
                 <tr>
                   <th>Thời gian</th>
-                  <th>Tên</th>
                   <th>Cookie (JSON)</th>
                 </tr>
               </thead>
@@ -55,7 +54,6 @@ export default function XssStolenCookiePage() {
                 {entries.map((e, idx) => (
                   <tr key={idx}>
                     <td><code>{e.time}</code></td>
-                    <td><code>{e.name}</code></td>
                     <td><code>{JSON.stringify(e.cookie)}</code></td>
                   </tr>
                 ))}
