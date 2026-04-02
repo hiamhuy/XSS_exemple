@@ -1,1 +1,0 @@
-{"time":"2026-03-15T17:03:15.421Z","name":"fake-hacker","cookie":{"_ga":"GA1.1.1888874874.1748227766","_qacr":"TcN9.x0dxWYyFwstDeSxmxkuitCBekZ3LZB9RvErM3ZkQnNAzVzS2zghPUAu.Odb5oEYatmVc3zItxVFFcJtf0IxkjEBP.FI8wn4","_ga_8PD4ZZ0WYG":"GS2.1.s1748227766$o1$g1$t1748230470$j0$l0$h0","auth_token":"fake_jwt_123456","user_id":"123","theme":"dark"}}

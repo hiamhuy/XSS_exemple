@@ -30,6 +30,15 @@ export default function XssStolenCookiePage() {
     <div className="stack">
       <div className="card">
         <h2>Trang attacker xem cookie đã bị đánh cắp</h2>
+
+        <button onClick={() => {
+          fetch("/api/clear-cookie", {
+            method: "POST",
+            credentials: "same-origin",
+          }).then(() => {
+            window.location.reload();
+          });
+        }}>Xóa lịch sử cookie</button>
       
         <section className="stack">
           <h3>Lịch sử cookie đã lưu (từ file stolen-cookies.txt)</h3>
