@@ -1,36 +1,27 @@
+import clientPromise from "../../../../lib/mongodb";
 import { NextResponse } from "next/server";
-import fs from "fs";
-import path from "path";
-
-type Entry = { time: string; name: string; cookie: unknown };
 
 export async function GET() {
   try {
-    // const logPath = path.join(process.cwd(), "public/stolen-cookies.txt");
-    const logPath = path.join("/tmp", "stolen-cookies.txt");
+    const client = await clientPromise;
+    const db = client.db("xss-demo");
 
-    if (!fs.existsSync(logPath)) {
-      return NextResponse.json({ data: [] });
-    }
+    const data = await db
+      .collection("cookies")
+      .find({})
+      .sort({ time: -1 }) // mới nhất trước
+      .limit(100)
+      .toArray();
 
-    const content = fs.readFileSync(logPath, "utf8");
+    const safeData = data.map((item) => ({
+      ...item,
+      _id: item._id.toString(),
+    }));
 
-    const entries: Entry[] = content
-      .split("\n")
-      .filter(Boolean)
-      .map((line) => {
-        try {
-          return JSON.parse(line);
-        } catch {
-          return null;
-        }
-      })
-      .filter((x): x is Entry => !!x);
-
-    return NextResponse.json({ data: entries });
-  } catch (error) {
+    return NextResponse.json({ data: safeData });
+  } catch {
     return NextResponse.json(
-      { error: "Failed to read file" },
+      { error: "Failed to fetch data" },
       { status: 500 }
     );
   }

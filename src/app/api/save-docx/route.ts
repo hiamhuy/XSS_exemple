@@ -1,20 +1,19 @@
 import clientPromise from "../../../../lib/mongodb";
 import { NextResponse } from "next/server";
 
-export async function POST() {
+export async function GET() {
   try {
     const client = await clientPromise;
     const db = client.db("xss-demo");
 
-    await db.collection("cookies").deleteMany({});
+    const doc = await db.collection("docx").findOne({ key: "main" });
 
     return NextResponse.json({
-      success: true,
-      message: "All cookies cleared",
+      content: doc?.content || "",
     });
   } catch {
     return NextResponse.json(
-      { error: "Failed to clear data" },
+      { error: "Failed to fetch" },
       { status: 500 }
     );
   }
