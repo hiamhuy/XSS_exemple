@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 /*
  * Trang mô phỏng Markdown editor giống GitHub nhưng CÓ lỗ hổng XSS.
@@ -38,6 +38,9 @@ function fakeMarkdownToHtml(markdown: string): string {
 }
 
 export default function XssMarkdownGithubPage() {
+  useEffect(() => {
+    void fetch("/api/create-cookie", { method: "GET", credentials: "same-origin" });
+  }, []);
   // markdownDraft: nội dung đang gõ trong editor
   const [markdownDraft, setMarkdownDraft] = useState(
     [
