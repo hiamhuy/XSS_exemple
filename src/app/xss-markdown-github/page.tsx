@@ -41,12 +41,20 @@ export default function XssMarkdownGithubPage() {
   // markdownDraft: nội dung đang gõ trong editor
   const [markdownDraft, setMarkdownDraft] = useState(
     [
-      "# Demo Markdown editor có lỗ hổng XSS",
+      "# XSS Markdown Playground",
       "",
-      "Bạn có thể gõ **Markdown** giống như GitHub ở khung bên trái.",
-      "Preview bên phải sẽ render HTML *không an toàn* từ nội dung bạn nhập.",
+      "Demo mini editor mô phỏng trải nghiệm viết README.",
       "",
-      "Trong editor thực tế (như GitHub), nội dung sẽ được sanitize/escape trước khi render.",
+      "## Mo ta",
+      "Trang nay render Markdown/HTML nguoi dung nhap vao.",
+      "",
+      "## Tinh nang",
+      "- Viet noi dung bang Markdown",
+      "- Cho phep chen HTML truc tiep",
+      "- Preview ngay sau khi bam Save",
+      "",
+      "## Canh bao bao mat",
+      "Trong ung dung thuc te, can sanitize/escape truoc khi render de tranh XSS.",
     ].join("\n")
   );
 
@@ -61,22 +69,6 @@ export default function XssMarkdownGithubPage() {
   return (
     <div className="stack" suppressHydrationWarning>
       <div className="card danger">
-        <p className="danger-label">
-          ● Nguy hiểm: Mô phỏng Markdown editor giống GitHub nhưng CÓ lỗ hổng XSS
-        </p>
-        <h2>Markdown editor (style GitHub) – có lỗ hổng XSS</h2>
-
-        <p>
-          Ý tưởng: người dùng gõ Markdown, hệ thống convert sang HTML và hiển thị
-          trong preview. Nếu việc convert / render không được sanitize, attacker
-          có thể chèn script hoặc HTML độc hại.
-        </p>
-        <p>
-          Editor như GitHub thật sẽ dùng thư viện Markdown + sanitizer{" "}
-          (ví dụ DOMPurify) để loại bỏ tag/script nguy hiểm. Ở đây mình cố tình
-          KHÔNG sanitize để bạn thấy rủi ro.
-        </p>
-
         <p>Ví dụ payload XSS:</p>
         <ul>
           <li><code>&lt;img src=x onerror="alert('XSS trong Markdown')" /&gt;</code></li>
